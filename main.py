@@ -1,8 +1,8 @@
 import os, sys
+from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from myproject import Ui_MainWindow
 
 def resizeEvent(self, event):
     width = event.size().width()
@@ -33,13 +33,14 @@ class MyQVBoxLayout(QVBoxLayout):
         width = event.size().width()
         print("event width: %d" % width)
 
-class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self):
-        super(MainWindow, self).__init__()
+class MainWindow(QMainWindow):
+    def __init__(self, ui_path):
+        super().__init__()
+        uic.loadUi(ui_path, self)
         self.setupUi()
 
     def setupUi(self):
-        super(MainWindow, self).setupUi(self)
+        #super(MainWindow, self).setupUi(self)
         #print(dir(self.dockWidget_2))
         self.dockWidget_2.setTitleBarWidget(QWidget(None))
         #self.treeWidget = MyTreeWidget(self.treeWidget)
@@ -57,9 +58,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.menu.popup(QCursor.pos())
 
 if __name__ == '__main__':
-    #import PyQt5
-    #pyqt = os.path.dirname(PyQt5.__file__)
+    app_dir = os.path.dirname(__file__)
     app = QApplication(sys.argv)
-    view = MainWindow()
+    view = MainWindow(os.path.join(app_dir, "myproject.ui"))
     view.show()
     sys.exit(app.exec_())
