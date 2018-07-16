@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1132</width>
-    <height>614</height>
+    <width>913</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -302,17 +302,15 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1132</width>
-     <height>20</height>
+     <width>913</width>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Файл</string>
+     <string>File</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="action_2"/>
-    <addaction name="action_3"/>
+    <addaction name="actionAdd"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -341,9 +339,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action"/>
-   <addaction name="action_2"/>
-   <addaction name="action_3"/>
+   <addaction name="actionAdd"/>
+   <addaction name="actionRemove"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_2">
    <property name="minimumSize">
@@ -448,9 +445,9 @@
     </layout>
    </widget>
   </widget>
-  <action name="action">
+  <action name="actionAdd">
    <property name="text">
-    <string>Создать</string>
+    <string>Add download</string>
    </property>
   </action>
   <action name="action_2">
@@ -461,6 +458,11 @@
   <action name="action_3">
    <property name="text">
     <string>Выход</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="text">
+    <string>Remove</string>
    </property>
   </action>
  </widget>

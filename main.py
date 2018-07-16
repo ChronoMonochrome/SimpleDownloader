@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os, sys
 from PyQt5 import uic
 from PyQt5.QtGui import *
@@ -40,21 +42,11 @@ class MainWindow(QMainWindow):
         self.setupUi()
 
     def setupUi(self):
-        #super(MainWindow, self).setupUi(self)
-        #print(dir(self.dockWidget_2))
         self.dockWidget_2.setTitleBarWidget(QWidget(None))
-        #self.treeWidget = MyTreeWidget(self.treeWidget)
-        #help(self.treeWidget.resizeEvent)
-        #self.treeWidget.resizeEvent = MyTreeWidget.resizeEvent
-        #self.dockWidget_2 = MyQDockWidget(self.dockWidget_2)
-        #self.verticalLayout_2.resizeEvent = MyQVBoxLayout.resizeEvent
+        self.menu = QMenu(self)
+        self.menu.addAction(self.actionAdd)
 
     def contextMenuEvent(self, event):
-        self.menu = QMenu(self)
-        renameAction = QAction('Rename', self)
-        renameAction.triggered.connect(lambda: self.renameSlot(event))
-        self.menu.addAction(renameAction)
-        # add other required actions
         self.menu.popup(QCursor.pos())
 
 if __name__ == '__main__':
