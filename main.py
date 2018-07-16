@@ -47,12 +47,13 @@ class MainWindow(QMainWindow):
 
     def setupUi(self):
         self.dockWidget_2.setTitleBarWidget(QWidget(None))
-        downloads.createDb()
-        if not downloads.createConnection():
+        self.downloads = downloads.Downloads()
+        self.downloads.createDb()
+        if not self.downloads.createConnection():
             print("error")
 
-        self.downloadsModel = downloads.initializeModel()
-        downloads.bindView("Table Model (View 1)", self.tableView, self.downloadsModel)
+        self.downloadsModel = self.downloads.initializeModel()
+        self.downloads.bindView("Table Model (View 1)", self.tableView, self.downloadsModel)
         self.tableView.setColumnHidden(0, True)
 
         self.menu = QMenu(self)
