@@ -6,6 +6,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
+from utils import getLocalPath
+
+from models import downloads
+
 def resizeEvent(self, event):
     width = event.size().width()
     self.setColumnWidth(1, 100)
@@ -43,6 +47,14 @@ class MainWindow(QMainWindow):
 
     def setupUi(self):
         self.dockWidget_2.setTitleBarWidget(QWidget(None))
+        downloads.createDb()
+        if not downloads.createConnection():
+            print("error")
+
+        self.downloadsModel = downloads.initializeModel()
+        downloads.bindView("Table Model (View 1)", self.tableView, self.downloadsModel)
+        self.tableView.setColumnHidden(0, True)
+
         self.menu = QMenu(self)
         self.menu.addAction(self.actionAdd)
 
@@ -50,8 +62,7 @@ class MainWindow(QMainWindow):
         self.menu.popup(QCursor.pos())
 
 if __name__ == '__main__':
-    app_dir = os.path.dirname(__file__)
     app = QApplication(sys.argv)
-    view = MainWindow(os.path.join(app_dir, "myproject.ui"))
+    view = MainWindow(getLocalPath("myproject.ui"))
     view.show()
     sys.exit(app.exec_())
